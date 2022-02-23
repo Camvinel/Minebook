@@ -2,9 +2,13 @@
   "name": "minebook",
   "version": "1.0.0",
   "description": "Project Advanced Software Engineering",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
@@ -20,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/Camvinel/Minebook/issues"
   },
-  "homepage": "https://github.com/Camvinel/Minebook#readme"
+  "homepage": "https://github.com/Camvinel/Minebook#readme",
+  "devDependencies": {
+    "@types/node": "^17.0.19",
+    "@types/react": "^17.0.39"
+  }
 }
