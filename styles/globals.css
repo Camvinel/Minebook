@@ -1,0 +1,97 @@
+h1 {
+    font: 4em "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    text-align: center;
+    color: #f1f3cb;
+}
+
+h2 {
+    font: 3em "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    text-align: center;
+    color: #f1f3cb;
+}
+
+
+#header {
+  position: fixed;
+  top: 0;
+  height: 20vh;
+  width: 100vw;
+  justify-content: center;
+  justify-self: center;
+  z-index: 3;
+}
+
+main {
+    background-color: #112744;
+    height: 100%;
+    width: 100vw;
+}
+
+.container-fluid{
+    padding: 0%;
+    margin: 0%;
+}
+s
+.carousel-inner > .carousel-item > img{
+    min-height: 60vh;
+    max-height: 100vh;
+    width: 100%;
+}
+
+.rounded {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.rounded-pill {
+    max-width: 100%;
+    height: auto;
+}
+
+p {
+    font: 1em "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    text-align: center;
+    color: #f1f3cb;
+}
+
+.button-group{
+    align-content: center;
+    color: #f1f3cb;
+}
+
+.col{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.btn-primary {
+
+    color: #f1f3cb;
+    background-color: #112744;
+    font: 1em "Helvetica Neue", sans-serif;
+    font-weight: 100;
+    border-color: #112744;
+}
+
+.btn-primary:hover {
+    color: #112744;
+    background-color: #f1f3cb;
+    border-color: #112744;
+}
+
+.slide-title {
+    position: absolute;
+    bottom: 4em;
+    text-align: center;
+    width: 100vw;
+}
+
+#cover {
+    position: relative;
+}
