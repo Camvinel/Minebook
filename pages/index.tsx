@@ -6,6 +6,7 @@ import React from 'react'
 const Home: NextPage = () =>  {
   return (
     <main>
+      
     </main>
   )
 }
