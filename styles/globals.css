@@ -1,97 +1,139 @@
-h1 {
-    font: 4em "Helvetica Neue", sans-serif;
-    font-weight: 100;
-    text-align: center;
-    color: #f1f3cb;
+body #main-content div.box > a,
+a.special {
+  font-size: 18px;
+  font-weight: bold;
+  font-family: sans-serif;
+
+  color: #000;
+  background-color: #fff;
 }
 
-h2 {
-    font: 3em "Helvetica Neue", sans-serif;
-    font-weight: 100;
-    text-align: center;
-    color: #f1f3cb;
+body #main-content {
+  position: relative;
 }
 
+/*
+label {
+  font-size: 24px;
+  color: lightblue;
+}
+*/
+/*
+input {
+  font-size: 30px;
+  width:100%;
+  box-sizing:border-box;
+  padding:12px 20px;
+  margin:8px 0;
+  background-color: salmon;
+}*/
 
-#header {
+#forum-wrapper {
+  height:100vh;
+}
+
+#messages-container {
+  overflow:auto;
+  background-color:violet;
+}
+
+#new-message-container {
+  border-top: 1px;
+  background-color: aquamarine;
+}
+
+#authentification-container{
+  font-size: 20px;
+  background-color: aquamarine;
+}
+
+/*.background {
   position: fixed;
-  top: 0;
-  height: 20vh;
-  width: 100vw;
+  top:0;
+  left:0;
+  min-width: 100%;
+  min-height: 100%;
+}*/
+
+.title {
+  min-height: 20vh;
+  height: auto;
+  color: #6b29e0;
+  margin: 5em;
+  display: flex;
+  align-items: flex-end;
   justify-content: center;
-  justify-self: center;
-  z-index: 3;
+  font-family: 'Caveat-Regular';
 }
 
-main {
-    background-color: #112744;
-    height: 100%;
-    width: 100vw;
+@font-face {
+  font-family: 'Caveat-Regular';
+  src: url("Caveat-Regular.ttf");
 }
 
-.container-fluid{
-    padding: 0%;
-    margin: 0%;
-}
-s
-.carousel-inner > .carousel-item > img{
-    min-height: 60vh;
-    max-height: 100vh;
-    width: 100%;
+.boxFollowing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.rounded {
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.boxFollowing >div{
+  border: solid 0.1em;
+  border-top: solid 1.5em;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  border-color: #6b29e0;
+  background-color: #ad8ceb;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.rounded-pill {
-    max-width: 100%;
-    height: auto;
+.title >div{
+  font-family: 'Times New Roman', Times, serif;
 }
 
-p {
-    font: 1em "Helvetica Neue", sans-serif;
-    font-weight: 100;
-    text-align: center;
-    color: #f1f3cb;
+.labelBox {
+  border: solid 0.1em;
+  border-color: #6b29e0;
 }
 
-.button-group{
-    align-content: center;
-    color: #f1f3cb;
+.button{
+  border: solid 0.1em;
+  margin: 1em;
+  background-color: #6b29e0;
+  color: white;
 }
 
-.col{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.cgubox {
+  position:relative;
 }
 
-.btn-primary {
-
-    color: #f1f3cb;
-    background-color: #112744;
-    font: 1em "Helvetica Neue", sans-serif;
-    font-weight: 100;
-    border-color: #112744;
+.cgubox >div{
+  position:absolute;
+  left:0;
+  top:0;
 }
 
-.btn-primary:hover {
-    color: #112744;
-    background-color: #f1f3cb;
-    border-color: #112744;
+/*
+.adress {
+  position: relative;
 }
 
-.slide-title {
-    position: absolute;
-    bottom: 4em;
-    text-align: center;
-    width: 100vw;
-}
+.adress >div{
+  top:0px;
+  position:absolute;
+  right: 0px;
+  color: red;
+  font-size: 10px;
+} */
 
-#cover {
-    position: relative;
+body #main-content div.box > a,
+a.special {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 100px;
+  height: 100px;
+
+  display: block; /*hidden, inline, ...*/
 }
