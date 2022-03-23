@@ -71,6 +71,19 @@ input {
   src: url("Caveat-Regular.ttf");
 }
 
+#formTitle
+{
+  font-size: 20vw;
+  text-shadow: 2px 3px   #9a78d6,
+               4px 5px   #9270cc,
+               6px 7px   #8767be,
+               8px 9px   #7f60b4,
+               10px 11px #795bad,
+               12px 13px #785aac,
+               14px 15px #7758ac,
+               60px 61px 50px #372557;
+}
+
 .boxFollowing {
   display: flex;
   align-items: center;
@@ -81,11 +94,18 @@ input {
   border: solid 0.1em;
   border-top: solid 1.5em;
   font-size: 20px;
-  font-family: 'Times New Roman', Times, serif;
-  border-color: #6b29e0;
-  background-color: #ad8ceb;
+  font-family: 'Caveat-Regular';
+  src: url("Caveat-Regular.ttf");
+  border-color: #8e5ce6;
+  border-radius: 15pt;
+  background-color: #c3abf0;
   margin-left: auto;
   margin-right: auto;
+}
+
+#floatingInput
+{
+    font-size:30px;
 }
 
 .title >div{
@@ -100,7 +120,9 @@ input {
 .button{
   border: solid 0.1em;
   margin: 1em;
-  background-color: #6b29e0;
+  background-color: #884fe9;
+  border-color: #6d37ca;
+  border-radius: 10pt;
   color: white;
 }
 
@@ -136,4 +158,57 @@ a.special {
   height: 100px;
 
   display: block; /*hidden, inline, ...*/
+}
+
+/* ______________________ PARALLAX ______________________ */
+
+body {
+  color: #181818;
+  font-family: monospace, monospace;
+  font-size: 10em
+}
+
+.parallax-base div {
+  opacity: .7;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.parallax-container {
+  position: absolute; 
+  top: 50%;
+  left: 50%;
+  margin-left: -250px;
+  margin-top: -150px;
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+
+
+.parallax-base {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  width: 500px;
+  height: 300px;
+  margin: 30px;
+}
+
+.layer-1 {
+  position: absolute;
+  -webkit-transform: translateZ(0px);
+  -moz-transform: translateZ(0px);
+}
+
+.layer-2 {
+  position: absolute;
+  -webkit-transform: translateZ(40px);
+  -moz-transform: translateZ(40px);
+}
+
+.layer-3 {
+  position: absolute;
+  -webkit-transform: translateZ(160px);
+  -moz-transform: translateZ(160px);
 }

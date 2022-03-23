@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
-import Authentification from './components/authentification'
+import Authentification from '../components/authentification'
 
 const Home: NextPage = () => {
   return (
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="container">
-        <Authentification />
+        <Authentification title={"Minebook"} />
       </div>
     </div>
   )
