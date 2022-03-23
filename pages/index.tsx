@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       <div className="container">
-        <Authentification />
+        <Authentification title={"Minebook"} />
       </div>
     </div>
   )
