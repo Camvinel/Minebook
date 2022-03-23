@@ -1,4 +1,4 @@
-interface User{
+type User = {
     firstname: string;
     lastname: string;
     photoURL: string;
