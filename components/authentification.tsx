@@ -6,14 +6,6 @@ const Authentification = ({title}: Props) => {
     return (
         <div className="background">
             <div className="container text-center">
-                <div className="parallax-container" >
-                    <div className="parallax-base">
-                        <div className="layer-1">layer</div>
-                        <div className="layer-2">layer</div>
-                        <div className="layer-3">layer</div>
-                    </div>
-                </div>
-
                 <div className="title">
                     <h1 id="formTitle">{title}</h1>
                 </div>
