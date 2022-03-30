@@ -1,6 +1,7 @@
 type User = {
     firstname: string;
     lastname: string;
+    elo: number;
     photoURL: string;
 };
 

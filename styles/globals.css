@@ -150,3 +150,35 @@ a.special {
     color: red;
     text-shadow: 0px 0px 20px rgb(255, 0, 0);
 }
+
+.background {
+    background-color: #c3abf0;
+}
+
+#profile {
+    font-family: "Caveat-Regular";
+    font-size: 3vw;
+    color: white;
+    width: fit-content;
+}
+
+.profile-column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+.profile-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.profile-picture-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25vw;
+    height: 25vw;
+    border-radius: 2.5vw;
+}
