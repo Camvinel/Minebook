@@ -53,12 +53,16 @@ const Authentication = ({ title }: Props) => {
             if (userData.password !== password) {
                 // Invalid password
                 setErrorMessages({ name: "pass", message: errors.password });
+                setPassword("");
             } else {
                 setIsSubmitted(true);
+                setUsername("");
+                setPassword("");
             }
         } else {
             // Username not found
             setErrorMessages({ name: "username", message: errors.username });
+            setUsername("");
         }
 
         //_______________________ Copilot generated code _____________________
@@ -97,10 +101,6 @@ const Authentication = ({ title }: Props) => {
         //         password: password
         //     })
         // })
-
-        // Clear state
-        setUsername("");
-        setPassword("");
     };
 
     const renderErrorMessage = (name) =>
