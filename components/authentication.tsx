@@ -4,14 +4,41 @@ interface Props {
     title: string
 }
 
-const Authentification = ({title}: Props) => {
+// User Login info
+const database = [
+    {
+      username: "user1",
+      password: "pass1"
+    },
+    {
+      username: "user2",
+      password: "pass2"
+    }
+  ];
+  
+  const errors = {
+    uname: "invalid username",
+    pass: "invalid password"
+  };
+
+
+const Authentication = ({title}: Props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errorMessages, setErrorMessages] = useState({name: "", message: ""});
 
     const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => setUsername(event.target.value);
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
+    
+    const renderErrorMessage = (name) => (
+        name === errorMessages.name && (
+        <div className="error">{errorMessages.message}</div>
+        ));
 
     const handleSubmit = async (event: SyntheticEvent) => {
+        console.log("Username: "+username);
+        console.log("Password: "+password);
         
         // Prevent browser to submit
         event.preventDefault()
@@ -19,6 +46,50 @@ const Authentification = ({title}: Props) => {
         if (username.length === 0 || password.length === 0) {
             return
         }
+
+        var { username, pass } = document.forms[0];
+
+        // Find user login info
+        const userData = database.find((user) => user.username === username.value);
+      
+        // Compare user info
+        if (userData) {
+          if (userData.password !== pass.value) {
+            // Invalid password
+            setErrorMessages({ name: "pass", message: errors.pass });
+          } else {
+            setIsSubmitted(true);
+          }
+        } else {
+          // Username not found
+          setErrorMessages({ name: "username", message: errors.uname });
+        }
+
+        //_______________________ Copilot generated code _____________________
+        // // Send data to server
+        // const response = await fetch("/api/login", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         username,
+        //         password
+        //     })
+        // })
+        // // Get response
+        // const data = await response.json()
+        // // Check response
+        // if (data.success) {
+        //     // Redirect to home
+        //     window.location.href = "/"
+        // } else {
+        //     // Display error
+        //     alert(data.message)
+        // }
+        //____________________________________________________________________
+
+
         // Send data
         // const url: string = '';
         // await fetch(url, {
@@ -31,9 +102,8 @@ const Authentification = ({title}: Props) => {
         //         password: password
         //     })
         // })
+
         // Clear state
-        console.log("Username: "+username);
-        console.log("Password: "+password);
         setUsername("");
         setPassword("");
     }
@@ -64,4 +134,4 @@ const Authentification = ({title}: Props) => {
     )
 }
 
-export default Authentification
+export default Authentication
