@@ -1,15 +1,15 @@
 body #main-content div.box > a,
 a.special {
-  font-size: 18px;
-  font-weight: bold;
-  font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: sans-serif;
 
-  color: #000;
-  background-color: #fff;
+    color: #000;
+    background-color: #fff;
 }
 
 body #main-content {
-  position: relative;
+    position: relative;
 }
 
 /*
@@ -28,25 +28,6 @@ input {
   background-color: salmon;
 }*/
 
-#forum-wrapper {
-  height:100vh;
-}
-
-#messages-container {
-  overflow:auto;
-  background-color:violet;
-}
-
-#new-message-container {
-  border-top: 1px;
-  background-color: aquamarine;
-}
-
-#authentification-container{
-  font-size: 20px;
-  background-color: aquamarine;
-}
-
 /*.background {
   position: fixed;
   top:0;
@@ -56,84 +37,87 @@ input {
 }*/
 
 .title {
-  min-height: 20vh;
-  height: auto;
-  color: #6b29e0;
-  margin: 5em;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  font-family: 'Caveat-Regular';
+    min-height: 20vh;
+    height: auto;
+    color: #6b29e0;
+    margin: 5em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    font-family: "Caveat-Regular";
 }
 
 @font-face {
-  font-family: 'Caveat-Regular';
-  src: url("Caveat-Regular.ttf");
+    font-family: "Caveat-Regular";
+    src: url("Caveat-Regular.ttf");
 }
 
-#formTitle
-{
-  font-size: 20vw;
-  text-shadow: 2px 3px   #9a78d6,
-               4px 5px   #9270cc,
-               6px 7px   #8767be,
-               8px 9px   #7f60b4,
-               10px 11px #795bad,
-               12px 13px #785aac,
-               14px 15px #7758ac,
-               60px 61px 50px #372557;
+#formTitle {
+    font-size: 20vw;
+    text-shadow: 2px 3px #9a78d6, 4px 5px #9270cc, 6px 7px #8767be,
+        8px 9px #7f60b4, 10px 11px #795bad, 12px 13px #785aac, 14px 15px #7758ac,
+        60px 61px 50px #372557;
 }
 
 .boxFollowing {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.boxFollowing >div{
-  border: solid 0.1em;
-  border-top: solid 1.5em;
-  font-size: 20px;
-  font-family: 'Caveat-Regular';
-  src: url("Caveat-Regular.ttf");
-  border-color: #8e5ce6;
-  border-radius: 15pt;
-  background-color: #c3abf0;
-  margin-left: auto;
-  margin-right: auto;
+.boxFollowing > div {
+    border: solid 0.1em;
+    border-top: solid 1.5em;
+    font-size: 20px;
+    font-family: "Caveat-Regular";
+    src: url("Caveat-Regular.ttf");
+    border-color: #8e5ce6;
+    border-radius: 15pt;
+    background-color: #c3abf0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 20px 20px 20px;
 }
 
-#floatingInput
-{
-    font-size:30px;
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 5px 5px 5px;
 }
 
-.title >div{
-  font-family: 'Times New Roman', Times, serif;
+#floatingInput {
+    border-radius: 10px;
+    font-size: 30px;
+}
+
+.title > div {
+    font-family: "Times New Roman", Times, serif;
 }
 
 .labelBox {
-  border: solid 0.1em;
-  border-color: #6b29e0;
+    border: solid 0.1em;
+    border-color: #6b29e0;
 }
 
-.button{
-  border: solid 0.1em;
-  margin: 1em;
-  background-color: #884fe9;
-  border-color: #6d37ca;
-  border-radius: 10pt;
-  color: white;
+.button {
+    border: solid 0.1em;
+    margin: 1em;
+    background-color: #884fe9;
+    border-color: #6d37ca;
+    border-radius: 10pt;
+    color: white;
 }
 
 .cgubox {
-  position:relative;
+    position: relative;
 }
 
-.cgubox >div{
-  position:absolute;
-  left:0;
-  top:0;
+.cgubox > div {
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 /*
@@ -151,11 +135,18 @@ input {
 
 body #main-content div.box > a,
 a.special {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 100px;
-  height: 100px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+    height: 100px;
 
-  display: block; /*hidden, inline, ...*/
+    display: block; /*hidden, inline, ...*/
+}
+
+.error {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 7vw;
+    color: red;
+    text-shadow: 0px 0px 20px rgb(255, 0, 0);
 }

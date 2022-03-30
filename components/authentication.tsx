@@ -1,68 +1,64 @@
-import { ChangeEvent, SyntheticEvent, useState } from 'react'
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 
 interface Props {
-    title: string
+    title: string;
 }
 
 // User Login info
 const database = [
     {
-      username: "user1",
-      password: "pass1"
+        username: "user1",
+        password: "pass1",
     },
     {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
-  
-  const errors = {
-    uname: "invalid username",
-    pass: "invalid password"
-  };
+        username: "user2",
+        password: "pass2",
+    },
+];
 
+const errors = {
+    username: "invalid username",
+    password: "invalid password",
+};
 
-const Authentication = ({title}: Props) => {
+const Authentication = ({ title }: Props) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
-    const [errorMessages, setErrorMessages] = useState({name: "", message: ""});
+    const [errorMessages, setErrorMessages] = useState({
+        name: "",
+        message: "",
+    });
 
-    const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => setUsername(event.target.value);
-    const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => setPassword(event.target.value);
-    
-    const renderErrorMessage = (name) => (
-        name === errorMessages.name && (
-        <div className="error">{errorMessages.message}</div>
-        ));
+    const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) =>
+        setUsername(event.target.value);
+    const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) =>
+        setPassword(event.target.value);
 
     const handleSubmit = async (event: SyntheticEvent) => {
-        console.log("Username: "+username);
-        console.log("Password: "+password);
-        
+        console.log("Username: " + username);
+        console.log("Password: " + password);
+
         // Prevent browser to submit
-        event.preventDefault()
+        event.preventDefault();
         // Validate data
         if (username.length === 0 || password.length === 0) {
-            return
+            return;
         }
 
-        var { username, pass } = document.forms[0];
-
         // Find user login info
-        const userData = database.find((user) => user.username === username.value);
-      
+        const userData = database.find((user) => user.username === username);
         // Compare user info
         if (userData) {
-          if (userData.password !== pass.value) {
-            // Invalid password
-            setErrorMessages({ name: "pass", message: errors.pass });
-          } else {
-            setIsSubmitted(true);
-          }
+            if (userData.password !== password) {
+                // Invalid password
+                setErrorMessages({ name: "pass", message: errors.password });
+            } else {
+                setIsSubmitted(true);
+            }
         } else {
-          // Username not found
-          setErrorMessages({ name: "username", message: errors.uname });
+            // Username not found
+            setErrorMessages({ name: "username", message: errors.username });
         }
 
         //_______________________ Copilot generated code _____________________
@@ -89,7 +85,6 @@ const Authentication = ({title}: Props) => {
         // }
         //____________________________________________________________________
 
-
         // Send data
         // const url: string = '';
         // await fetch(url, {
@@ -106,7 +101,50 @@ const Authentication = ({title}: Props) => {
         // Clear state
         setUsername("");
         setPassword("");
-    }
+    };
+
+    const renderErrorMessage = (name) =>
+        name === errorMessages.name && (
+            <div className="error">Error: {errorMessages.message}</div>
+        );
+
+    const renderForm = (
+        <div className="boxFollowing">
+            <div className="container text-center">
+                <form className="form-floating mt-3" onSubmit={handleSubmit}>
+                    <div className="input-container">
+                        <input
+                            type="username"
+                            className="form-control"
+                            id="floatingInput"
+                            placeholder="Identifiant"
+                            required
+                            onChange={handleUsernameChange}
+                            value={username}
+                        />
+                    </div>
+                    <div className="input-container">
+                        <input
+                            type="password"
+                            className="form-control"
+                            id="floatingInput"
+                            placeholder="Mot de passe"
+                            required
+                            onChange={handlePasswordChange}
+                            value={password}
+                        />
+                        {renderErrorMessage("username")}
+                        {renderErrorMessage("pass")}
+                    </div>
+                    <div className="button-container">
+                        <button type="submit" className="button">
+                            Se connecter
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
 
     return (
         <div className="background">
@@ -114,24 +152,14 @@ const Authentication = ({title}: Props) => {
                 <div className="title">
                     <h1 id="formTitle">{title}</h1>
                 </div>
+                {isSubmitted ? (
+                    <div>User is successfully logged in</div>
+                ) : (
+                    renderForm
+                )}
             </div>
-            <div className="boxFollowing">
-                <div className="container text-center">
-                    <form className="form-floating mt-3" onSubmit={handleSubmit}>
-                        <div className="input-container">
-                            <input type="username" className="form-control" id="floatingInput" placeholder="Identifiant" required onChange={handleUsernameChange} value={username}/>
-                        </div>
-                        <div className="input-container">
-                            <input type="password" className="form-control" id="floatingInput" placeholder="Mot de passe" required onChange={handlePasswordChange} value={password}/>
-                        </div>
-                        <div className="button-container">
-                            <button type="submit" className="button">Se connecter</button>
-                        </div>
-                    </form>
-                </div>
-            </div >
-        </div >
-    )
-}
+        </div>
+    );
+};
 
-export default Authentication
+export default Authentication;
