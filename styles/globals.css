@@ -157,7 +157,7 @@ body {
 
 .TitlePage {
     font-family: "Caveat-Regular";
-    font-size: 8vw;
+    font-size: 7vw;
     text-shadow: 1px 2px #a17fdc, 2px 3px #9a78d6, 3px 4px #9270cc,
         4px 5px #8767be, 5px 6px #7f60b4, 6px 7px #795bad, 7px 8px #785aac,
         8px 9px #7758ac, 40px 40px 40px #372557;
@@ -166,7 +166,7 @@ body {
 
 #profile {
     font-family: "Caveat-Regular";
-    font-size: 4vw;
+    font-size: 3vw;
     padding: 10px 10px;
     color: white;
     width: fit-content;
@@ -188,8 +188,8 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 28vw;
-    height: 28vw;
+    width: 26vw;
+    height: 26vw;
     border-radius: 4vw;
     box-shadow: 1px 1px 30px #624c8c;
 }
@@ -197,7 +197,7 @@ body {
 .profile-info-name {
     font-family: "Caveat-Regular";
     color: white;
-    font-size: 5vw;
+    font-size: 4vw;
     padding: 5px 10px;
     margin: 10px 10px;
     text-align: center;
@@ -206,10 +206,10 @@ body {
     box-shadow: 1px 1px 30px #836bb0;
 }
 
-.profile-info-elo {
+.profile-info-element {
     font-family: "Caveat-Regular";
     color: white;
-    font-size: 4vw;
+    font-size: 3vw;
     padding: 5px 10px;
     margin: 10px 10px;
     text-align: center;

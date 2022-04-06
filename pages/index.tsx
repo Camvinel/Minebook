@@ -3,7 +3,7 @@ import Head from "next/head";
 import React from "react";
 import Authentication from "../components/authentication";
 import ProfilePage from "../components/profilePage";
-import User from "../components/User";
+import { User } from "../components/User";
 
 const users: User[] = [
     {

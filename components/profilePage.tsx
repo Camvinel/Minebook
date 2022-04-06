@@ -1,5 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
-import User from "./User";
+import getRank, { User } from "./User";
 
 interface Props {
     user: User;
@@ -17,8 +17,11 @@ const ProfilePage = ({ user }: Props) => {
                             <div className="profile-info-name">
                                 {user.firstname + " " + user.lastname}
                             </div>
-                            <div className="profile-info-elo">
+                            <div className="profile-info-element">
                                 {"Score: " + user.elo}
+                            </div>
+                            <div className="profile-info-element">
+                                {"Classement: " + getRank(user)}
                             </div>
                         </div>
                     </div>
