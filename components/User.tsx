@@ -7,7 +7,7 @@ type User = {
 };
 
 const getRank = (user: User) => {
-    return 1;
+    return -1;
 };
 
 export type { User };
