@@ -7,12 +7,12 @@ interface Props {
 // User Login info
 const database = [
     {
-        username: "user1",
-        password: "pass1",
+        username: "vincent",
+        password: "vincent",
     },
     {
-        username: "user2",
-        password: "pass2",
+        username: "todor",
+        password: "todor",
     },
 ];
 
