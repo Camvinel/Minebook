@@ -1,4 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import ProfilePage from "./profilePage";
+import { User } from "./User";
 
 interface Props {
     title: string;
@@ -7,12 +9,29 @@ interface Props {
 // User Login info
 const database = [
     {
-        username: "user1",
-        password: "pass1",
+        username: "vincent",
+        password: "vincent",
     },
     {
-        username: "user2",
-        password: "pass2",
+        username: "todor",
+        password: "todor",
+    },
+];
+
+const users: User[] = [
+    {
+        username: "vincent",
+        firstname: "Vincent",
+        lastname: "Trélat",
+        elo: 1000,
+        photoURL: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+        username: "todor",
+        firstname: "Todor",
+        lastname: "Peev",
+        elo: 1200,
+        photoURL: "https://www.w3schools.com/howto/img_avatar2.png",
     },
 ];
 
@@ -20,6 +39,9 @@ const errors = {
     username: "invalid username",
     password: "invalid password",
 };
+
+const fetchUser = (username: string) =>
+    users.find((user) => user.username === username);
 
 const Authentication = ({ title }: Props) => {
     const [username, setUsername] = useState("");
@@ -34,6 +56,8 @@ const Authentication = ({ title }: Props) => {
         setUsername(event.target.value);
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) =>
         setPassword(event.target.value);
+
+    // const navigate = useNavigate();
 
     const handleSubmit = async (event: SyntheticEvent) => {
         console.log("Username: " + username);
@@ -55,52 +79,13 @@ const Authentication = ({ title }: Props) => {
                 setErrorMessages({ name: "pass", message: errors.password });
                 setPassword("");
             } else {
+                // Valid password
                 setIsSubmitted(true);
-                setUsername("");
-                setPassword("");
             }
         } else {
             // Username not found
             setErrorMessages({ name: "username", message: errors.username });
-            setUsername("");
         }
-
-        //_______________________ Copilot generated code _____________________
-        // // Send data to server
-        // const response = await fetch("/api/login", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         username,
-        //         password
-        //     })
-        // })
-        // // Get response
-        // const data = await response.json()
-        // // Check response
-        // if (data.success) {
-        //     // Redirect to home
-        //     window.location.href = "/"
-        // } else {
-        //     // Display error
-        //     alert(data.message)
-        // }
-        //____________________________________________________________________
-
-        // Send data
-        // const url: string = '';
-        // await fetch(url, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         username: username,
-        //         password: password
-        //     })
-        // })
     };
 
     const renderErrorMessage = (name) =>
@@ -146,19 +131,21 @@ const Authentication = ({ title }: Props) => {
         </div>
     );
 
-    return (
+    const notLoggedInPage = (
         <div className="background">
             <div className="container text-center">
                 <div className="title">
                     <h1 id="formTitle">{title}</h1>
                 </div>
-                {isSubmitted ? (
-                    <div>User is successfully logged in</div>
-                ) : (
-                    renderForm
-                )}
+                {renderForm}
             </div>
         </div>
+    );
+
+    return isSubmitted ? (
+        <ProfilePage user={fetchUser(username)} />
+    ) : (
+        notLoggedInPage
     );
 };
 

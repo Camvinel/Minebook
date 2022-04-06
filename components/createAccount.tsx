@@ -1,3 +1,4 @@
+import { EOL } from "os";
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { mutate } from "swr";
 import User from "./User";
@@ -6,6 +7,7 @@ const CreateAccount = () => {
     const [firstName, setFistname] = useState("");
     const [lastName, setLastname] = useState("");
     const [picture, setpicture] = useState(null);
+    const [elo, setelo] = useState(null);
 
     const handleFirstnameChange = (event: ChangeEvent<HTMLInputElement>) =>
         setFistname(event.target.value);
@@ -16,6 +18,7 @@ const CreateAccount = () => {
     let user: User = {
         firstname: firstName,
         lastname: lastName,
+        elo: elo,
         photoURL: "",
     };
     const handleSubmit = async (event: SyntheticEvent) => {

@@ -150,3 +150,95 @@ a.special {
     color: red;
     text-shadow: 0px 0px 20px rgb(255, 0, 0);
 }
+
+body {
+    background-color: #c3abf0;
+}
+
+.TitlePage {
+    font-family: "Caveat-Regular";
+    font-size: 7vw;
+    text-shadow: 1px 2px #a17fdc, 2px 3px #9a78d6, 3px 4px #9270cc,
+        4px 5px #8767be, 5px 6px #7f60b4, 6px 7px #795bad, 7px 8px #785aac,
+        8px 9px #7758ac, 40px 40px 40px #372557;
+    text-align: center;
+}
+
+#profile {
+    font-family: "Caveat-Regular";
+    font-size: 3vw;
+    padding: 10px 10px;
+    color: white;
+    width: fit-content;
+}
+
+.profile-column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+.profile-row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.profile-picture-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 26vw;
+    height: 26vw;
+    border-radius: 4vw;
+    box-shadow: 1px 1px 30px #624c8c;
+}
+
+.profile-info-name {
+    font-family: "Caveat-Regular";
+    color: white;
+    font-size: 4vw;
+    padding: 5px 10px;
+    margin: 10px 10px;
+    text-align: center;
+    background-color: #b299e2;
+    border-radius: 5vw;
+    box-shadow: 1px 1px 30px #836bb0;
+}
+
+.profile-info-element {
+    font-family: "Caveat-Regular";
+    color: white;
+    font-size: 3vw;
+    padding: 5px 10px;
+    margin: 10px 10px;
+    text-align: center;
+    background-color: #b299e2;
+    border-radius: 5vw;
+    box-shadow: 1px 1px 30px #836bb0;
+}
+
+.button-container {
+    padding: 25px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-profile {
+    font-family: "Caveat-Regular";
+    font-size: 4vw;
+    color: white;
+    padding: 10px 20px;
+    background-color: #b299e2;
+    border-radius: 7vw;
+    border: solid 2px;
+    border-color: #9278c4;
+    box-shadow: 1px 1px 20px #836bb0;
+}
+
+.button-profile:hover {
+    color: #bdadd9;
+    background-color: #513a7b;
+    border-color: #bdadd9;
+}
