@@ -1,4 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
+import BattlePage from "./battlePage";
 import getRank, { User } from "./User";
 
 interface Props {
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const ProfilePage = ({ user }: Props) => {
+    let isClicked = false;
     const renderPage = (
         <body className="background">
             <div className="TitlePage">MineBook</div>
@@ -39,7 +41,7 @@ const ProfilePage = ({ user }: Props) => {
                 <button
                     type="button"
                     className="button-profile"
-                    onClick={(event) => (window.location.href = "/")}
+                    onClick={(event) => (window.location.href = "/battle")}
                 >
                     Juger !
                 </button>

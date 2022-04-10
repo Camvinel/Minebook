@@ -85,6 +85,8 @@ const Authentication = ({ title }: Props) => {
         } else {
             // Username not found
             setErrorMessages({ name: "username", message: errors.username });
+            setUsername("");
+            setPassword("");
         }
     };
 
