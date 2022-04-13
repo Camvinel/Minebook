@@ -1,9 +1,6 @@
 import { ChangeEvent, SyntheticEvent, useState } from "react";
 import ProfilePage from "./profilePage";
 import { User } from "./User";
-// import users from "../components/users.json";
-import users from "../components/users.js";
-import Cookies from "js-cookie";
 
 interface Props {
     title: string;
@@ -19,9 +16,22 @@ const database = [
         username: "todor",
         password: "todor",
     },
+];
+
+const users: User[] = [
     {
-        username: "nguyen",
-        password: "nguyen",
+        username: "vincent",
+        firstname: "Vincent",
+        lastname: "Trélat",
+        elo: 1000,
+        photoURL: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+        username: "todor",
+        firstname: "Todor",
+        lastname: "Peev",
+        elo: 1200,
+        photoURL: "https://www.w3schools.com/howto/img_avatar2.png",
     },
 ];
 
@@ -30,14 +40,8 @@ const errors = {
     password: "invalid password",
 };
 
-const fetchUser = (username: string) => {
-    for (const user of users) {
-        console.log(user);
-        if (user.username === username) {
-            return user;
-        }
-    }
-};
+const fetchUser = (username: string) =>
+    users.find((user) => user.username === username);
 
 const Authentication = ({ title }: Props) => {
     const [username, setUsername] = useState("");
@@ -74,18 +78,15 @@ const Authentication = ({ title }: Props) => {
                 // Invalid password
                 setErrorMessages({ name: "pass", message: errors.password });
                 setPassword("");
-                Cookies.remove("username");
             } else {
                 // Valid password
                 setIsSubmitted(true);
-                Cookies.set("username", username);
             }
         } else {
             // Username not found
             setErrorMessages({ name: "username", message: errors.username });
             setUsername("");
             setPassword("");
-            Cookies.remove("username");
         }
     };
 
@@ -143,11 +144,11 @@ const Authentication = ({ title }: Props) => {
         </div>
     );
 
-    if (isSubmitted) {
-        window.location.href = "/profile";
-    } else {
-        return notLoggedInPage;
-    }
+    return isSubmitted ? (
+        <ProfilePage user={fetchUser(username)} />
+    ) : (
+        notLoggedInPage
+    );
 };
 
 export default Authentication;
