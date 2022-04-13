@@ -1,14 +1,39 @@
-import { ChangeEvent, SyntheticEvent, useState } from "react";
-import BattlePage from "./battlePage";
 import getRank, { User } from "./User";
+import { useState } from "react";
+import firebaseConfig from "../firebase";
+import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { doc, getDoc } from "firebase/firestore";
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
 
 interface Props {
-    user: User;
+    uid: string;
 }
 
-const ProfilePage = ({ user }: Props) => {
+const ProfilePage = ({ uid }: Props) => {
+    const [user, setUser] = useState();
+
+    const getUser = async () => {
+        const docRef = doc(db, "users", uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+            setUser(docSnap.data() as User);
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+            setUser(undefined);
+        }
+    };
+
+    getUser();
+
     let isClicked = false;
-    const renderPage = (
+    const renderPage = () => (
         <body className="background">
             <div className="TitlePage">MineBook</div>
             <h1 id="profile">Profil</h1>
@@ -48,7 +73,7 @@ const ProfilePage = ({ user }: Props) => {
             </div>
         </body>
     );
-    return renderPage;
+    return user ? renderPage() : <div>Loading...</div>;
 };
 
 export default ProfilePage;
