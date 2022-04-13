@@ -123,7 +123,7 @@ const Authentication = ({ title }: Props) => {
     );
 
     if (isSubmitted) {
-        window.location.href = "/profile";
+        window.location.href = "/myprofile";
         // console.log(auth.currentUser.uid);
         // return <ProfilePage uid={auth.currentUser.uid} />;
     } else {

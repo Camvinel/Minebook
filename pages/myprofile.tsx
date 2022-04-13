@@ -1,9 +1,7 @@
 import { NextPage } from "next";
 import ProfilePage from "../components/profilePage";
 import firebaseConfig from "../firebase";
-import {
-    getAuth, onAuthStateChanged,
-} from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { useEffect, useState } from "react";
 
@@ -21,8 +19,8 @@ const Profile: NextPage = () => {
             }
         });
     });
-    console.log(uid)
-    return uid? <ProfilePage uid={uid} /> : <div>Loading...</div>;
+    console.log(uid);
+    return uid ? <ProfilePage uid={uid} /> : <div>Loading...</div>;
 };
 
 export default Profile;
