@@ -1,8 +1,11 @@
 import { NextPage } from "next";
 import { Button } from "react-bootstrap";
-import users from "../components/users.json";
+import users from "../components/users.js";
+import Cookies from "js-cookie";
 
 const Battle: NextPage = () => {
+    const username = Cookies.get("username");
+
     const voteLeft = () => {
         console.log("Click left");
     };
@@ -15,6 +18,7 @@ const Battle: NextPage = () => {
         console.log("Click draw");
     };
 
+    // Generate random ids
     const id1 = Math.floor(Math.random() * Object.keys(users).length);
     let id2 = Math.floor(Math.random() * Object.keys(users).length);
     while (id2 === id1) {
@@ -57,7 +61,7 @@ const Battle: NextPage = () => {
             </div>
         </body>
     );
-    return renderPage;
+    return username ? renderPage : <div>Vous n'êtes pas connecté</div>;
 };
 
 export default Battle;
