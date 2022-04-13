@@ -53,7 +53,7 @@ input {
 }
 
 #formTitle {
-    font-size: 20vw;
+    font-size : clamp(2rem, 20vw, 15rem);
     text-shadow: 2px 3px #9a78d6, 4px 5px #9270cc, 6px 7px #8767be,
         8px 9px #7f60b4, 10px 11px #795bad, 12px 13px #785aac, 14px 15px #7758ac,
         60px 61px 50px #372557;
@@ -157,7 +157,8 @@ body {
 
 .TitlePage {
     font-family: "Caveat-Regular";
-    font-size: 7vw;
+    
+    font-size : clamp(2rem, 7vw, 5rem);
     text-shadow: 1px 2px #a17fdc, 2px 3px #9a78d6, 3px 4px #9270cc,
         4px 5px #8767be, 5px 6px #7f60b4, 6px 7px #795bad, 7px 8px #785aac,
         8px 9px #7758ac, 40px 40px 40px #372557;
