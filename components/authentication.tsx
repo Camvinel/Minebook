@@ -1,7 +1,13 @@
 import { ChangeEvent, SyntheticEvent, useState, useEffect } from "react";
 import firebaseConfig from "../firebase";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
-import { initializeApp } from "firebase/app"
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+} from "firebase/auth";
+import { initializeApp } from "firebase/app";
+import ProfilePage from "./profilePage";
+import { User } from "./User";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
@@ -10,22 +16,42 @@ interface Props {
     title: string;
 }
 
-// // User Login info
-// const database = [
-//     {
-//         email: "user1",
-//         password: "pass1",
-//     },
-//     {
-//         email: "user2",
-//         password: "pass2",
-//     },
-// ];
+// User Login info
+const database = [
+    {
+        username: "vincent",
+        password: "vincent",
+    },
+    {
+        username: "todor",
+        password: "todor",
+    },
+];
+
+const users: User[] = [
+    {
+        username: "vincent",
+        firstname: "Vincent",
+        lastname: "Trélat",
+        elo: 1000,
+        photoURL: "https://www.w3schools.com/howto/img_avatar.png",
+    },
+    {
+        username: "todor",
+        firstname: "Todor",
+        lastname: "Peev",
+        elo: 1200,
+        photoURL: "https://www.w3schools.com/howto/img_avatar2.png",
+    },
+];
 
 const errors = {
     email: "invalid email",
     password: "invalid password",
 };
+
+const fetchUser = (username: string) =>
+    users.find((user) => user.username === username);
 
 const Authentication = ({ title }: Props) => {
     const [email, setEmail] = useState("");
@@ -37,100 +63,40 @@ const Authentication = ({ title }: Props) => {
     });
 
     useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
-			if (user){
-				setIsSubmitted(true);
-			} else {
-				setIsSubmitted(false);
-			}
-		})
-    })
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setIsSubmitted(true);
+            } else {
+                setIsSubmitted(false);
+            }
+        });
+    });
 
     const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) =>
         setEmail(event.target.value);
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) =>
         setPassword(event.target.value);
 
+    // const navigate = useNavigate();
+
     const handleSubmit = async (event: SyntheticEvent) => {
         console.log("Email: " + email);
         console.log("Password: " + password);
-        
+
         // Prevent browser to submit
         event.preventDefault();
 
-		signInWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
-				// Signed in 
-        		setIsSubmitted(true);
-				const user = userCredential.user;
-			})
-		  	.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				setErrorMessages({name: "pass", message: errorMessage});
-			});
-
-
-        // Validate data
-        /* if (email.length === 0 || password.length === 0) {
-            return;
-        }
-
-        // Find user login info
-        const userData = database.find((user) => user.email === email);
-        // Compare user info
-        if (userData) {
-            if (userData.password !== password) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.password });
-                setPassword("");
-            } else {
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
                 setIsSubmitted(true);
-                setEmail("");
-                setPassword("");
-            }
-        } else {
-            // Email not found
-            setErrorMessages({ name: "email", message: errors.email });
-            setEmail("");
-        } */
-
-        //_______________________ Copilot generated code _____________________
-        // // Send data to server
-        // const response = await fetch("/api/login", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         email,
-        //         password
-        //     })
-        // })
-        // // Get response
-        // const data = await response.json()
-        // // Check response
-        // if (data.success) {
-        //     // Redirect to home
-        //     window.location.href = "/"
-        // } else {
-        //     // Display error
-        //     alert(data.message)
-        // }
-        //____________________________________________________________________
-
-        // Send data
-        // const url: string = '';
-        // await fetch(url, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify({
-        //         email: email,
-        //         password: password
-        //     })
-        // })
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setErrorMessages({ name: "pass", message: errorMessage });
+            });
     };
 
     const renderErrorMessage = (name) =>
@@ -139,7 +105,7 @@ const Authentication = ({ title }: Props) => {
         );
 
     const renderForm = (
-		<div className="boxFollowing">
+        <div className="boxFollowing">
             <div className="container text-center">
                 <form className="form-floating mt-3" onSubmit={handleSubmit}>
                     <div className="input-container">
@@ -176,19 +142,22 @@ const Authentication = ({ title }: Props) => {
         </div>
     );
 
-    return (
+    const notLoggedInPage = (
         <div className="background">
             <div className="container text-center">
                 <div className="title">
                     <h1 id="formTitle">{title}</h1>
                 </div>
-                {isSubmitted ? (
-                    <div>User is successfully logged in</div>
-                ) : (
-                    renderForm
-                )}
+                {renderForm}
             </div>
         </div>
+    );
+
+    return isSubmitted ? (
+        <div>Logged In</div>
+    ) : (
+        // <ProfilePage user={auth.currentUser.uid} />
+        notLoggedInPage
     );
 };
 
