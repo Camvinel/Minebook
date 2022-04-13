@@ -123,9 +123,9 @@ const Authentication = ({ title }: Props) => {
     );
 
     if (isSubmitted) {
-        // window.location.href = "/profile";
-        console.log(auth.currentUser.uid);
-        return <ProfilePage uid={auth.currentUser.uid} />;
+        window.location.href = "/profile";
+        // console.log(auth.currentUser.uid);
+        // return <ProfilePage uid={auth.currentUser.uid} />;
     } else {
         return notLoggedInPage;
     }

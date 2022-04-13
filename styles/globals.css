@@ -237,6 +237,18 @@ body {
     box-shadow: 1px 1px 20px #836bb0;
 }
 
+.button-deco {
+    font-family: "Caveat-Regular";
+    font-size: 1.5vw;
+    color: white;
+    padding: 10px 20px;
+    background-color: #b299e2;
+    border-radius: 7vw;
+    border: solid 2px;
+    border-color: #9278c4;
+    box-shadow: 1px 1px 20px #836bb0;
+}
+
 .button-profile:hover {
     color: #bdadd9;
     background-color: #513a7b;

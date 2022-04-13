@@ -4,6 +4,7 @@ import firebaseConfig from "../firebase";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { doc, getDoc } from "firebase/firestore";
+import { getAuth, signOut } from "firebase/auth"
 
 const app = initializeApp(firebaseConfig);
 
@@ -13,8 +14,10 @@ interface Props {
     uid: string;
 }
 
+const auth = getAuth();
 const ProfilePage = ({ uid }: Props) => {
     const [user, setUser] = useState();
+    const [loaded, setLoaded] = useState(false);
 
     const getUser = async () => {
         const docRef = doc(db, "users", uid);
@@ -23,14 +26,16 @@ const ProfilePage = ({ uid }: Props) => {
         if (docSnap.exists()) {
             console.log("Document data:", docSnap.data());
             setUser(docSnap.data() as User);
+            setLoaded(true);
         } else {
             // doc.data() will be undefined in this case
             console.log("No such document!");
             setUser(undefined);
+            setLoaded(false);
         }
     };
 
-    getUser();
+    if (!loaded) getUser();
 
     let isClicked = false;
     const renderPage = () => (
@@ -50,6 +55,12 @@ const ProfilePage = ({ uid }: Props) => {
                             <div className="profile-info-element">
                                 {"Classement: " + getRank(user)}
                             </div>
+                            <button className="button-deco" onClick = {
+                                () => {
+                                    signOut(auth);
+                                    window.location.href = "/";
+                                }
+                                }>Déconnexion</button>
                         </div>
                     </div>
                     <div className="profile-column">

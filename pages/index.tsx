@@ -5,23 +5,6 @@ import Authentication from "../components/authentication";
 import ProfilePage from "../components/profilePage";
 import { User } from "../components/User";
 
-const users: User[] = [
-    {
-        username: "vincent",
-        firstname: "Vincent",
-        lastname: "Trélat",
-        elo: 1000,
-        photoURL: "https://www.w3schools.com/howto/img_avatar.png",
-    },
-    {
-        username: "todor",
-        firstname: "Todor",
-        lastname: "Peev",
-        elo: 1200,
-        photoURL: "https://www.w3schools.com/howto/img_avatar2.png",
-    },
-];
-
 const Home: NextPage = () => {
     return (
         <div>
