@@ -7,15 +7,15 @@ const CreateAccount = () => {
     const [username = "", setUsername] = useState("");
     const [firstName, setFistname] = useState("");
     const [lastName, setLastname] = useState("");
-    const [picture, setpicture] = useState(null);
-    const [elo, setelo] = useState(null);
+    const [picture, setPicture] = useState(null);
+    const [elo, setElo] = useState(null);
 
     const handleFirstnameChange = (event: ChangeEvent<HTMLInputElement>) =>
         setFistname(event.target.value);
     const handleLastnameChange = (event: ChangeEvent<HTMLInputElement>) =>
         setLastname(event.target.value);
     const handlePictureChange = (event: ChangeEvent<HTMLInputElement>) =>
-        setpicture(event.target.value);
+        setPicture(event.target.value);
     let user: User = {
         username: username,
         firstname: firstName,
@@ -41,7 +41,7 @@ const CreateAccount = () => {
         });
         mutate("https://minesbook.herokuapp.com/accounts");
 
-        setpicture(null);
+        setPicture(null);
     };
 
     return (

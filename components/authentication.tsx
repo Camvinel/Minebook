@@ -1,6 +1,16 @@
-import { ChangeEvent, SyntheticEvent, useState } from "react";
+import { ChangeEvent, SyntheticEvent, useState, useEffect } from "react";
+import firebaseConfig from "../firebase";
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+} from "firebase/auth";
+import { initializeApp } from "firebase/app";
 import ProfilePage from "./profilePage";
 import { User } from "./User";
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 
 interface Props {
     title: string;
@@ -36,7 +46,7 @@ const users: User[] = [
 ];
 
 const errors = {
-    username: "invalid username",
+    email: "invalid email",
     password: "invalid password",
 };
 
@@ -44,7 +54,7 @@ const fetchUser = (username: string) =>
     users.find((user) => user.username === username);
 
 const Authentication = ({ title }: Props) => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [errorMessages, setErrorMessages] = useState({
@@ -52,40 +62,41 @@ const Authentication = ({ title }: Props) => {
         message: "",
     });
 
-    const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) =>
-        setUsername(event.target.value);
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setIsSubmitted(true);
+            } else {
+                setIsSubmitted(false);
+            }
+        });
+    });
+
+    const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) =>
+        setEmail(event.target.value);
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) =>
         setPassword(event.target.value);
 
     // const navigate = useNavigate();
 
     const handleSubmit = async (event: SyntheticEvent) => {
-        console.log("Username: " + username);
+        console.log("Email: " + email);
         console.log("Password: " + password);
 
         // Prevent browser to submit
         event.preventDefault();
-        // Validate data
-        if (username.length === 0 || password.length === 0) {
-            return;
-        }
 
-        // Find user login info
-        const userData = database.find((user) => user.username === username);
-        // Compare user info
-        if (userData) {
-            if (userData.password !== password) {
-                // Invalid password
-                setErrorMessages({ name: "pass", message: errors.password });
-                setPassword("");
-            } else {
-                // Valid password
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
                 setIsSubmitted(true);
-            }
-        } else {
-            // Username not found
-            setErrorMessages({ name: "username", message: errors.username });
-        }
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                setErrorMessages({ name: "pass", message: errorMessage });
+            });
     };
 
     const renderErrorMessage = (name) =>
@@ -99,13 +110,13 @@ const Authentication = ({ title }: Props) => {
                 <form className="form-floating mt-3" onSubmit={handleSubmit}>
                     <div className="input-container">
                         <input
-                            type="username"
+                            type="email"
                             className="form-control"
                             id="floatingInput"
                             placeholder="Identifiant"
                             required
-                            onChange={handleUsernameChange}
-                            value={username}
+                            onChange={handleEmailChange}
+                            value={email}
                         />
                     </div>
                     <div className="input-container">
@@ -118,7 +129,7 @@ const Authentication = ({ title }: Props) => {
                             onChange={handlePasswordChange}
                             value={password}
                         />
-                        {renderErrorMessage("username")}
+                        {renderErrorMessage("email")}
                         {renderErrorMessage("pass")}
                     </div>
                     <div className="button-container">
@@ -143,8 +154,9 @@ const Authentication = ({ title }: Props) => {
     );
 
     return isSubmitted ? (
-        <ProfilePage user={fetchUser(username)} />
+        <div>Logged In</div>
     ) : (
+        // <ProfilePage user={auth.currentUser.uid} />
         notLoggedInPage
     );
 };
