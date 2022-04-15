@@ -1,0 +1,23 @@
+{
+    "0": {
+        "username": "vincent",
+        "firstname": "Vincent",
+        "lastname": "Trélat",
+        "elo": 1000,
+        "photoURL": "https://www.w3schools.com/howto/img_avatar.png"
+    },
+    "1": {
+        "username": "todor",
+        "firstname": "Todor",
+        "lastname": "Peev",
+        "elo": 1200,
+        "photoURL": "https://www.w3schools.com/howto/img_avatar2.png"
+    },
+    "2": {
+        "username": "nguyen",
+        "firstname": "Nguyen-Anh",
+        "lastname": "Vu",
+        "elo": 999,
+        "photoURL": "https://www.svgrepo.com/show/27171/asian.svg"
+    }
+}

@@ -4,6 +4,7 @@ type User = {
     lastname: string;
     elo: number;
     photoURL: string;
+    numberOfGames: number;
 };
 
 const getRank = (user: User) => {

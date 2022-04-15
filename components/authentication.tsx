@@ -16,42 +16,10 @@ interface Props {
     title: string;
 }
 
-// User Login info
-const database = [
-    {
-        username: "vincent",
-        password: "vincent",
-    },
-    {
-        username: "todor",
-        password: "todor",
-    },
-];
-
-const users: User[] = [
-    {
-        username: "vincent",
-        firstname: "Vincent",
-        lastname: "Trélat",
-        elo: 1000,
-        photoURL: "https://www.w3schools.com/howto/img_avatar.png",
-    },
-    {
-        username: "todor",
-        firstname: "Todor",
-        lastname: "Peev",
-        elo: 1200,
-        photoURL: "https://www.w3schools.com/howto/img_avatar2.png",
-    },
-];
-
 const errors = {
     email: "invalid email",
     password: "invalid password",
 };
-
-const fetchUser = (username: string) =>
-    users.find((user) => user.username === username);
 
 const Authentication = ({ title }: Props) => {
     const [email, setEmail] = useState("");
@@ -95,6 +63,7 @@ const Authentication = ({ title }: Props) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                setIsSubmitted(false);
                 setErrorMessages({ name: "pass", message: errorMessage });
             });
     };
@@ -153,12 +122,13 @@ const Authentication = ({ title }: Props) => {
         </div>
     );
 
-    return isSubmitted ? (
-        <div>Logged In</div>
-    ) : (
-        // <ProfilePage user={auth.currentUser.uid} />
-        notLoggedInPage
-    );
+    if (isSubmitted) {
+        window.location.href = "/myprofile";
+        // console.log(auth.currentUser.uid);
+        // return <ProfilePage uid={auth.currentUser.uid} />;
+    } else {
+        return notLoggedInPage;
+    }
 };
 
 export default Authentication;
