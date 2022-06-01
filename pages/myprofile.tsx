@@ -9,7 +9,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
 const Profile: NextPage = () => {
-    const [uid, setUid] = useState();
+    const [uid, setUid] = useState("");
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {

@@ -22,6 +22,7 @@ const CreateAccount = () => {
         lastname: lastName,
         elo: elo,
         photoURL: "",
+        numberOfGames: 0
     };
     const handleSubmit = async (event: SyntheticEvent) => {
         event.preventDefault();
