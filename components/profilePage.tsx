@@ -16,7 +16,14 @@ interface Props {
 
 const auth = getAuth();
 const ProfilePage = ({ uid }: Props) => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({
+        username: "",
+        firstname: "",
+        lastname: "",
+        elo: 1000,
+        photoURL: "",
+        numberOfGames: 0,
+    });
     const [loaded, setLoaded] = useState(false);
 
     const getUser = async () => {
@@ -25,7 +32,7 @@ const ProfilePage = ({ uid }: Props) => {
 
         if (docSnap.exists()) {
             console.log("Document data:", docSnap.data());
-            setUser(docSnap.data() as User);
+            setUser(docSnap.data() as any);
             setLoaded(true);
         } else {
             // doc.data() will be undefined in this case
