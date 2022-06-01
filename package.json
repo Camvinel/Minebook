@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Project Advanced Software Engineering",
   "main": "index.tsx",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint",
   },
   "repository": {
     "type": "git",
