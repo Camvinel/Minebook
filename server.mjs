@@ -2,7 +2,7 @@ import Express from "express"
 import Next from "next"
 import { initializeApp } from "firebase/app"
 import { collection, query, doc, getFirestore, getDocs, where } from "firebase/firestore"
-import firebaseConfig from "./firebase.js"
+import firebaseConfig from "./firebase.mjs"
 
 // firebase initialisation
 const fApp = initializeApp(firebaseConfig)
@@ -28,7 +28,6 @@ app.prepare()
       const usersRef = collection(db, "users")
       const q = query(usersRef, where("username", "==", username))
       const querySnapshot = await getDocs(q)
-      querySnapshot.forEach((d) => console.log(d.data()))
       res.json(querySnapshot.docs.map((doc) => doc.data()))
     })
 
