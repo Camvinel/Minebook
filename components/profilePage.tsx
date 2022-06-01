@@ -1,6 +1,6 @@
 import getRank, { User } from "./User";
 import { useState } from "react";
-import firebaseConfig from "../firebase";
+import firebaseConfig from "../firebase.mjs";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { doc, getDoc } from "firebase/firestore";

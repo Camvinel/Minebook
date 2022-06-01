@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import BattlePage from "../components/battlePage";
-import firebaseConfig from "../firebase";
+import firebaseConfig from "../firebase.mjs";
 import {
     collection,
     getFirestore,

@@ -1,5 +1,5 @@
 import { ChangeEvent, SyntheticEvent, useState, useEffect } from "react";
-import firebaseConfig from "../firebase";
+import firebaseConfig from "../firebase.mjs";
 import {
     getAuth,
     signInWithEmailAndPassword,
