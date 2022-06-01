@@ -4,11 +4,23 @@ import firebaseConfig from "../firebase";
 import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 import { doc, getDoc } from "firebase/firestore";
-import { getAuth, signOut } from "firebase/auth"
+import { getAuth, signOut } from "firebase/auth";
+// import { getDownloadURL, ref, getStorage } from "firebase/storage";
 
 const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
+
+// const storage = getStorage(app);
+
+// const url = getDownloadURL(ref(storage, "profile_vincent.jpg"))
+//     .then((url) => {
+//         console.log(url);
+//         return url;
+//     })
+//     .catch((error) => {
+//         console.log(error);
+//     });
 
 interface Props {
     uid: string;
@@ -31,12 +43,10 @@ const ProfilePage = ({ uid }: Props) => {
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
             setUser(docSnap.data() as any);
             setLoaded(true);
         } else {
             // doc.data() will be undefined in this case
-            console.log("No such document!");
             setUser(undefined);
             setLoaded(false);
         }
@@ -62,16 +72,22 @@ const ProfilePage = ({ uid }: Props) => {
                             <div className="profile-info-element">
                                 {"Classement: " + getRank(user)}
                             </div>
-                            <button className="button-deco" onClick = {
-                                () => {
+                            <button
+                                className="button-deco"
+                                onClick={() => {
                                     signOut(auth);
                                     window.location.href = "/";
-                                }
-                                }>Déconnexion</button>
+                                }}
+                            >
+                                Déconnexion
+                            </button>
                         </div>
                     </div>
                     <div className="profile-column">
                         <div className="profile-picture">
+                            {
+                                // get token from firebase
+                            }
                             <img
                                 className="profile-picture-image"
                                 src={user.photoURL}
