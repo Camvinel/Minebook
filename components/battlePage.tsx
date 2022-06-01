@@ -1,8 +1,14 @@
 import { NextPage } from "next";
 import { Button } from "react-bootstrap";
 import users from "../components/users.json";
+import { User } from "../components/User";
 
-const Battle: NextPage = () => {
+interface Props {
+    user1: User;
+    user2: User;
+}
+
+const Battle = ({ user1, user2 }: Props) => {
     const voteLeft = () => {
         console.log("Click left");
     };
@@ -21,8 +27,11 @@ const Battle: NextPage = () => {
         id2 = Math.floor(Math.random() * Object.keys(users).length);
     }
 
-    const url1 = users[id1].photoURL;
-    const url2 = users[id2].photoURL;
+    console.log(user1);
+    console.log(user2);
+
+    const url1 = user1?.photoURL;
+    const url2 = user2?.photoURL;
 
     const renderPage = (
         <body className="background">
