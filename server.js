@@ -16,14 +16,14 @@ app.prepare()
   .then(() => {
     const server = Express()
 
-    server.get("/users", async (req, res) => {
+    server.get("/api/users", async (req, res) => {
       const usersRef = collection(db, "users")
       const q = query(usersRef)
       const querySnapshot = await getDocs(q)
       res.json(querySnapshot.docs.map((doc) => doc.data()))
     })
 
-    server.get("/users/:username", async (req, res) => {
+    server.get("/api/users/:username", async (req, res) => {
       const username = req.params.username
       const usersRef = collection(db, "users")
       const q = query(usersRef, where("username", "==", username))
