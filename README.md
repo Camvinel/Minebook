@@ -8,6 +8,6 @@ Les données ainsi collectées permettent d'établir un classement.
 
 ## API
 
-* `/users`: return a json array of all the users and their information:
+* `/api/users`: return a json array of all the users and their information:
   * `[{"firstname": string, "lastname": string, "elo": number, "numberOfGames": number, "photoUrl": string, "username": string}]`
-* `/users/<username>`: return only the user having `"username" == username`
+* `/api/users/<username>`: return only the user having `"username" == username`
